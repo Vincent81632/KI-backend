@@ -3,3 +3,4 @@ uvicorn
 gunicorn
 torch
 firebase-admin
+numpy
