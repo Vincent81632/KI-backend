@@ -47,8 +47,8 @@ class SimpleTokenizer:
 
 # Inputs von der firestore Datenbank holen.
 cred_json = os.getenv("UEBUNGEN.JSON")
-cred_cict = json.loads(cred_json)
-cred = credentials.Certificate(cred_json) # credentials.Certificate: Lädt eine Service Account Datei im JSONFormat, welche Firebase verwendet, um sich zu authentifizieren. "übungen.json": Das ist der Pfad der json Datei (Sie ist im Hauptverzeichniss des Projekts).
+cred_dict = json.loads(cred_json)
+cred = credentials.Certificate(cred_dict) # credentials.Certificate: Lädt eine Service Account Datei im JSONFormat, welche Firebase verwendet, um sich zu authentifizieren. "übungen.json": Das ist der Pfad der json Datei (Sie ist im Hauptverzeichniss des Projekts).
 firebase_admin.initialize_app(cred)            # Diese Zeile initialisiert mit Hilfe der json Datei ("übungen.json") eine Verbindung zur Firestore Datenbank.
 db = firestore.client()                        # Stellt eine Verbindung zur Datenbank her.
 
