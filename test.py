@@ -20,13 +20,13 @@ app.add_middleware(
 
 
 class TrainingsInput(BaseModel):
-    Ziel: str
-    Ort: str
-    Muskeln: str
-    Schwierigkeitsgrad: int
-    Zeit: int
-    Häufigkeit: int
-    Equipment: str
+    ziel: str
+    ort: str
+    muskeln: str
+    schwierigkeitsgrad: int
+    zeit: int
+    häufigkeit: int
+    equipment: str
 
 
 
