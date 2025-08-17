@@ -7,6 +7,9 @@ from firebase_admin import credentials, firestore
 from torch.nn.utils.rnn import pad_sequence
 import os
 from firebase_admin import credentials
+import json
+
+
 
 
 
@@ -43,21 +46,13 @@ class SimpleTokenizer:
 
 
 # Inputs von der firestore Datenbank holen.
-cred = credentials.Certificate({
-    "type": "service_account",
-    "project_id": os.getenv("FIREBASE_PROJECT_ID"),
-    "private_key_id": os.getenv("FIREBASE_PRIVATE_KEY_ID"),
-    "private_key": os.getenv("FIREBASE_PRIVATE_KEY").replace("\\n", "\n"),
-    "client_email": os.getenv("FIREBASE_CLIENT_EMAIL"),
-    "client_id": os.getenv("FIREBASE_CLIENT_ID"),
-    "auth_uri": os.getenv("FIREBASE_AUTH_URI"),
-    "token_uri": "https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url": os.getenv("FIREBASE_AUTH_PROVIDER"),
-    "client_x509_cert_url": os.getenv("FIREBASE_CLIENT"),
-    "universe_domain": os.getenv("FIREBASE_UNIVERSE_DOMAIN")
-}) # credentials.Certificate: Lädt eine Service Account Datei im JSONFormat, welche Firebase verwendet, um sich zu authentifizieren. "übungen.json": Das ist der Pfad der json Datei (Sie ist im Hauptverzeichniss des Projekts).
+cred_json = os.getenv("ÜBUNGEN.JSON")
+cred_cict = json.loads(cred_json)
+cred = credentials.Certificate(cred_json) # credentials.Certificate: Lädt eine Service Account Datei im JSONFormat, welche Firebase verwendet, um sich zu authentifizieren. "übungen.json": Das ist der Pfad der json Datei (Sie ist im Hauptverzeichniss des Projekts).
 firebase_admin.initialize_app(cred)            # Diese Zeile initialisiert mit Hilfe der json Datei ("übungen.json") eine Verbindung zur Firestore Datenbank.
 db = firestore.client()                        # Stellt eine Verbindung zur Datenbank her.
+
+
 
 def fetch_all_data():                             # Eine Funktion, welche alle Daten aus der Datenbank holen soll.
     all_data = {}                                 # Hier werden die gewonnenen Daten gespeichert.
