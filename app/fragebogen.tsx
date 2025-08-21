@@ -73,7 +73,7 @@ const equipmentPress = (equipment: string) => {
 const generate = async () => {
   try {
     const response = await axios.post(
-      "https://fastapi-backend-x3b7.onrender.com/generate_plan",
+      "https://ki-backend-xy0b.onrender.com/generate_plan",
       {
         ziel: auswahl_ziel,
         ort: auswahl_ort,
